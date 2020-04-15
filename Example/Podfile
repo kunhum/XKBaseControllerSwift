@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'XKBaseControllerSwift_Example' do
+  pod 'XKBaseControllerSwift', :path => '../'
+
+  target 'XKBaseControllerSwift_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
