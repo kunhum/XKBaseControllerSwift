@@ -1,0 +1,6 @@
+framework module XKBaseControllerSwift {
+  umbrella header "XKBaseControllerSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}
