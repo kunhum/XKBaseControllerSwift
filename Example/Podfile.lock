@@ -1,5 +1,5 @@
 PODS:
-  - XKBaseControllerSwift (1.0.1)
+  - XKBaseControllerSwift (1.0.0)
 
 DEPENDENCIES:
   - XKBaseControllerSwift (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  XKBaseControllerSwift: 267cf12a023aa6df3aa6d616ffa20e74bbb51dfa
+  XKBaseControllerSwift: 6aa873c45e678f117401e5834390e5d8273bcdeb
 
 PODFILE CHECKSUM: 35f019d2104d31e88504236369d1be95f3f6ea7a
 
