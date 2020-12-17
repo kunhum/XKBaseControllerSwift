@@ -44,6 +44,13 @@ public class XKBaseNavigationController: UINavigationController {
         
         super.pushViewController(viewController, animated: animated)
     }
+    //MARK: 适配脑残iOS14.0 rootViewController 的 tabbar消失的问题
+    public override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        if viewControllers.count > 1 {
+            topViewController?.hidesBottomBarWhenPushed = false
+        }
+        return super.popToRootViewController(animated: animated)
+    }
     
     @objc func handleBackButton() {
         popViewController(animated: true)
