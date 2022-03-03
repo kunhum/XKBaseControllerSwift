@@ -9,9 +9,9 @@
 import UIKit
 
 ///配置类
-public class XKBaseControllerConfig {
+public class XKControllerConfig {
     
-    public static let xk_shareConfig = XKBaseControllerConfig()
+    public static let xk_shareConfig = XKControllerConfig()
     
     ///tabbar背景图
     public var tabbarBackgroundImage: UIImage?

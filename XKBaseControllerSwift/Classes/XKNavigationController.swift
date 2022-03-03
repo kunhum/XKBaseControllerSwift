@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class XKBaseNavigationController: UINavigationController {
+public class XKNavigationController: UINavigationController {
     
     var xk_shouldAutorotate = false
 
@@ -31,7 +31,7 @@ public class XKBaseNavigationController: UINavigationController {
             
             viewController.hidesBottomBarWhenPushed = true
             
-            if var backImage = XKBaseControllerConfig.xk_shareConfig.navigationBarBackButtonImage {
+            if var backImage = XKControllerConfig.xk_shareConfig.navigationBarBackButtonImage {
                 
                 backImage = backImage.withRenderingMode(.alwaysOriginal)
                 
@@ -55,20 +55,10 @@ public class XKBaseNavigationController: UINavigationController {
     @objc func handleBackButton() {
         popViewController(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension XKBaseNavigationController : UIGestureRecognizerDelegate {
+
+extension XKNavigationController : UIGestureRecognizerDelegate {
     
     //MARK: - UIGestureRecognizerDelegate
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -76,7 +66,7 @@ extension XKBaseNavigationController : UIGestureRecognizerDelegate {
         guard let topController = topViewController else {
             return childViewControllers.count > 1
         }
-        guard let classArr = XKBaseControllerConfig.xk_shareConfig.navigationBarBackGestureIgnoredClass else { return  childViewControllers.count > 1}
+        guard let classArr = XKControllerConfig.xk_shareConfig.navigationBarBackGestureIgnoredClass else { return  childViewControllers.count > 1}
         
         for classObject in classArr {
            

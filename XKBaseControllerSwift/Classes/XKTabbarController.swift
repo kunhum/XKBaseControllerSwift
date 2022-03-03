@@ -7,7 +7,7 @@
 
 import UIKit
 
-class XKBaseTabbarController: UITabBarController {
+class XKTabbarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,13 +16,13 @@ class XKBaseTabbarController: UITabBarController {
         
         xk_updateTabBarItem()
         
-        if let backgroundImage = XKBaseControllerConfig.xk_shareConfig.tabbarBackgroundImage {
+        if let backgroundImage = XKControllerConfig.xk_shareConfig.tabbarBackgroundImage {
             tabBar.backgroundImage = backgroundImage
         }
-        if let barTintColor = XKBaseControllerConfig.xk_shareConfig.tabbarBarTintColor {
+        if let barTintColor = XKControllerConfig.xk_shareConfig.tabbarBarTintColor {
             tabBar.barTintColor = barTintColor
         }
-        if let tintColor = XKBaseControllerConfig.xk_shareConfig.tabbarTintColor {
+        if let tintColor = XKControllerConfig.xk_shareConfig.tabbarTintColor {
             tabBar.tintColor = tintColor
         }
         
@@ -37,7 +37,7 @@ class XKBaseTabbarController: UITabBarController {
             item.image         = item.image?.withRenderingMode(.alwaysOriginal)
             item.selectedImage = item.selectedImage?.withRenderingMode(.alwaysOriginal)
             if #available(iOS 10.0, *) {
-                item.badgeColor    = XKBaseControllerConfig.xk_shareConfig.tabbarBadgeColor
+                item.badgeColor    = XKControllerConfig.xk_shareConfig.tabbarBadgeColor
             } else {
                 // Fallback on earlier versions
             }
