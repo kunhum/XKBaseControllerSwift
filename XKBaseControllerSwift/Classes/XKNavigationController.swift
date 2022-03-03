@@ -27,7 +27,7 @@ public class XKNavigationController: UINavigationController {
     //MARK: - 重写系统方法，修改返回按键样式
     public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         
-        if childViewControllers.count > 0 {
+        if children.count > 0 {
             
             viewController.hidesBottomBarWhenPushed = true
             
@@ -64,9 +64,9 @@ extension XKNavigationController : UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         guard let topController = topViewController else {
-            return childViewControllers.count > 1
+            return children.count > 1
         }
-        guard let classArr = XKControllerConfig.xk_shareConfig.navigationBarBackGestureIgnoredClass else { return  childViewControllers.count > 1}
+        guard let classArr = XKControllerConfig.xk_shareConfig.navigationBarBackGestureIgnoredClass else { return  children.count > 1}
         
         for classObject in classArr {
            
@@ -78,7 +78,7 @@ extension XKNavigationController : UIGestureRecognizerDelegate {
             }
         }
         
-        return childViewControllers.count > 1
+        return children.count > 1
         
     }
 }
