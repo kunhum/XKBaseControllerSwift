@@ -7,9 +7,9 @@
 
 import UIKit
 
-class XKTabbarController: UITabBarController {
+open class XKTabbarController: UITabBarController {
 
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -28,7 +28,11 @@ class XKTabbarController: UITabBarController {
         
     }
     
-    public func xk_updateTabBarItem() {
+}
+
+public extension XKTabbarController {
+    
+    func xk_updateTabBarItem() {
         
         guard let items = tabBar.items else { return }
         
@@ -43,16 +47,4 @@ class XKTabbarController: UITabBarController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

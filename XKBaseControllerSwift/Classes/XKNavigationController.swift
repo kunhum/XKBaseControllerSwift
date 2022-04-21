@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class XKNavigationController: UINavigationController {
+open class XKNavigationController: UINavigationController {
     
     var xk_shouldAutorotate = false
 
@@ -44,7 +44,7 @@ public class XKNavigationController: UINavigationController {
         
         super.pushViewController(viewController, animated: animated)
     }
-    //MARK: 适配脑残iOS14.0 rootViewController 的 tabbar消失的问题
+    //MARK: 适配iOS14.0 rootViewController 的 tabbar消失的问题
     public override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         if viewControllers.count > 1 {
             topViewController?.hidesBottomBarWhenPushed = false
