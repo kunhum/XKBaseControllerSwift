@@ -10,8 +10,18 @@ import UIKit
 open class XKNavigationController: UINavigationController {
     
     var xk_shouldAutorotate = false
-
-    override public func viewDidLoad() {
+    
+    public override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        updateNavigationBar()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        updateNavigationBar()
+    }
+    
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -25,7 +35,7 @@ open class XKNavigationController: UINavigationController {
     }
     
     //MARK: - 重写系统方法，修改返回按键样式
-    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         
         if children.count > 0 {
             
@@ -45,15 +55,20 @@ open class XKNavigationController: UINavigationController {
         super.pushViewController(viewController, animated: animated)
     }
     //MARK: 适配iOS14.0 rootViewController 的 tabbar消失的问题
-    public override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+    open override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         if viewControllers.count > 1 {
             topViewController?.hidesBottomBarWhenPushed = false
         }
         return super.popToRootViewController(animated: animated)
     }
     
-    @objc func handleBackButton() {
+    @objc open func handleBackButton() {
         popViewController(animated: true)
+    }
+    
+    func updateNavigationBar() {
+        guard let attributes = XKControllerConfig.xk_shareConfig.titleAttributes else { return }
+        navigationBar.set(titleAttributes: attributes)
     }
 }
 
@@ -61,7 +76,7 @@ open class XKNavigationController: UINavigationController {
 extension XKNavigationController : UIGestureRecognizerDelegate {
     
     //MARK: - UIGestureRecognizerDelegate
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         guard let topController = topViewController else {
             return children.count > 1
@@ -80,5 +95,31 @@ extension XKNavigationController : UIGestureRecognizerDelegate {
         
         return children.count > 1
         
+    }
+}
+
+private extension UINavigationBar {
+    
+    func set(titleAttributes: [NSAttributedString.Key: Any], largeAttributes: [NSAttributedString.Key: Any]? = nil, opaque: Bool = true) {
+        guard #available(iOS 13.0, *) else {
+            titleTextAttributes = titleAttributes
+            if let largeAttributes = largeAttributes {
+                largeTitleTextAttributes = largeAttributes
+            }
+            return
+        }
+        let appearance = standardAppearance ?? UINavigationBarAppearance()
+        if opaque {
+            appearance.configureWithOpaqueBackground()
+        }
+        appearance.titleTextAttributes = titleAttributes
+        if let largeAttributes = largeAttributes {
+            appearance.largeTitleTextAttributes = largeAttributes
+        }
+        standardAppearance = appearance
+        scrollEdgeAppearance = appearance
+        compactAppearance = appearance
+        guard #available(iOS 15.0, *) else { return }
+        compactScrollEdgeAppearance = appearance
     }
 }

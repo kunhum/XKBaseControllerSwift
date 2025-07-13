@@ -25,6 +25,8 @@ public class XKControllerConfig {
     public var navigationBarBackButtonImage: UIImage?
     ///返回手势要忽略的类
     public var navigationBarBackGestureIgnoredClass: [AnyClass]?
+    /// 导航栏标题属性
+    public var titleAttributes: [NSAttributedString.Key: Any]? = nil
     
 }
 
